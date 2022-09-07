@@ -6,9 +6,9 @@ from .register_handlers import DICT_FUNC
 def search_arguments(text: str):
     data = DICT_FUNC.get(text.lower())
 
-    if not data:
+    if data:
         return data, None
-
+    
     command, *args = text.split(maxsplit=1)
     args = args[0] if args else None
 
