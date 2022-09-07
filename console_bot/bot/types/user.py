@@ -6,4 +6,4 @@ USERS = {}
 @dataclass
 class User:
     name: str
-    phone: str
+    phone: int
