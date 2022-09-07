@@ -1,9 +1,5 @@
-from collections import namedtuple
 from .error import input_error
-
-User = namedtuple("User", ["name", "phone"])
-UserPhone = namedtuple("UserPhone", "name")
-USERS = {}
+from .types import User, USERS
 
 
 def hello() -> str:
@@ -21,6 +17,7 @@ def add_user(user: User) -> None:
     :param user:
     :return:
     """
+    print(type(user))
     USERS[user.name] = user
 
 
@@ -36,14 +33,14 @@ def change_user(user: User) -> None:
 
 
 @input_error
-def user_phone(user_phone: UserPhone) -> str:
+def user_phone(user: User) -> str:
     """
     По этой команде бот выводит в консоль номер телефона для указанного контакта.
     Пользователь вводит команду phone и имя контакта, чей номер нужно показать, обязательно через пробел.
-    :param user_phone:
+    :param user:
     :return:
     """
-    return USERS[user_phone.name].phone
+    return USERS[user.name].phone
 
 
 def show_all_users() -> str:
