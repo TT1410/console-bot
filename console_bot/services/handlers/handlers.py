@@ -1,6 +1,6 @@
-from .errors import input_error
-from .types import User, USERS
-from .filters import check_phone
+from console_bot.services.decorators import input_error
+from console_bot.services.types import User, USERS
+from console_bot.services.utils import check_phone
 
 
 def hello() -> str:

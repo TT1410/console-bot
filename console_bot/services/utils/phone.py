@@ -14,7 +14,7 @@ def sanitize_phone_number(phone: str) -> str:
     return new_phone
 
 
-def check_phone(phone: str) -> int | ValueError:
+def check_phone(phone: str) -> int:
     clean_phone = sanitize_phone_number(phone)
 
     phone = search(r"(?:380|0)\d{9}", clean_phone)

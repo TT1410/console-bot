@@ -1,4 +1,4 @@
-from .handlers import User
+from console_bot.services.types import User
 
 DICT_FUNC = {}
 
@@ -7,10 +7,10 @@ def register_message_handler(func, commands: str | list, arguments: User = None,
     if isinstance(commands, str):
         commands = [commands]
 
-    for cmd in commands:
+    for command in commands:
         if arguments:
-            DICT_FUNC.update({cmd: {'function': func, "arguments": arguments, "quantity_arg": quantity_arg}})
+            DICT_FUNC.update({command: {'function': func, "arguments": arguments, "quantity_arg": quantity_arg}})
         else:
-            DICT_FUNC[cmd] = func
+            DICT_FUNC[command] = func
 
     return func
