@@ -1,4 +1,4 @@
-from setuptools import setup
+from setuptools import setup, find_namespace_packages
 
 
 setup(
@@ -9,7 +9,7 @@ setup(
     author='TT1410',
     author_email='tarplax@gmail.com',
     license='MIT',
-    packages=['console_bot'],
+    packages=find_namespace_packages(),
     include_package_data=True,
     entry_points={'console_scripts': ['console-bot = console_bot:main']}
 )
