@@ -60,7 +60,7 @@ def main() -> None:
         else:
             result = func(args)
 
-        print(result + '\n' if result else '')
+        print(f"{result}\n" if result else '')
 
         if result == "Good bye!":
             break
