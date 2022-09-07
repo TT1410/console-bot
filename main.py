@@ -1,4 +1,4 @@
-from bot import DICT_FUNC, input_error
+from bot import DICT_FUNC, input_error, User
 
 
 @input_error
@@ -6,27 +6,36 @@ def text_parsing(text: str) -> tuple:
     data = DICT_FUNC.get(text.lower())
 
     if not data:
-        text = text.split(' ')
-        # print(text)
+        command, *args = text.split(maxsplit=1)
+        args = args[0] if args else None
 
-        data = DICT_FUNC.get(text[0].lower())
+        data = DICT_FUNC.get(command.lower())
 
         if not data:
-            raise ValueError(f"Sorry, but there is no '{text[0]}' command")
+            raise ValueError(f"Sorry, but there is no '{command}' command")
+    else:
+        command, args = text.lower, None
 
     if isinstance(data, dict):
-        if isinstance(text, str):
+        if not args:
+            if data['quantity_arg'] == 1:
+                raise ValueError("Enter user name")
             raise ValueError("Give me name and phone please")
 
-        arg = data['arguments']
+        args = args.rsplit(maxsplit=1)
+
+        args = args + [''] if (len(args) < 2) and (len(args) == data['quantity_arg']) else args
+
+        user: User = data['arguments']
+
         try:
-            args = arg(*text[1:])
+            _args = user(*args)
+            print(args)
         except TypeError:
-            if text[0].lower() == "phone":
-                raise ValueError("Enter user name")
+            # print(command, '----', args)
             raise ValueError("Please tell me your name and phone number, separated by a space")
 
-        return data['function'], args
+        return data['function'], _args
 
     return data, None
 
