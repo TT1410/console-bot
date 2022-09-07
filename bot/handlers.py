@@ -17,7 +17,6 @@ def add_user(user: User) -> None:
     :param user:
     :return:
     """
-    print(type(user))
     USERS[user.name] = user
 
 
