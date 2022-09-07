@@ -1,5 +1,6 @@
 from .errors import input_error
 from .types import User, USERS
+from .filters import check_phone
 
 
 def hello() -> str:
@@ -10,6 +11,7 @@ def hello() -> str:
     return "How can I help you?"
 
 
+@input_error
 def add_user(user: User) -> None:
     """
     По этой команде бот сохраняет в памяти (в словаре например) новый контакт.
@@ -17,6 +19,7 @@ def add_user(user: User) -> None:
     :param user:
     :return:
     """
+    user.phone = check_phone(user.phone)
     USERS[user.name] = user
 
 
@@ -28,9 +31,8 @@ def change_user(user: User) -> None:
     :param user:
     :return:
     """
-    USERS.pop(user.name)
-
-    USERS[user.name] = user
+    user.phone = check_phone(user.phone)
+    USERS[user.name].phone = user.phone
 
 
 @input_error
