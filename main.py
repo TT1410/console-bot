@@ -7,7 +7,7 @@ def text_parsing(text: str) -> tuple:
 
     if not data:
         text = text.split(' ')
-        print(text)
+        # print(text)
 
         data = DICT_FUNC.get(text[0].lower())
 
