@@ -28,6 +28,8 @@ def change_user(user: User) -> None:
     :param user:
     :return:
     """
+    USERS.pop(user.name)
+
     USERS[user.name] = user
 
 
