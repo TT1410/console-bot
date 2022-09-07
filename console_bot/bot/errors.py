@@ -4,10 +4,10 @@ def input_error(func):
         try:
             return func(*args, **kwargs)
         except ValueError as e:
-            print(e)
+            print(f"{e}\n")
         except KeyError as e:
-            print(f"User {e} not found")
+            print(f"User {e} not found\n")
         except IndexError as e:
-            print(e)
+            print(f"{e}\n")
 
     return inner
